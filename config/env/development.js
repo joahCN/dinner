@@ -10,6 +10,9 @@
  *
  */
 
+let fs = require("fs");
+let path = require('path');
+
 module.exports = {
 
   /***************************************************************************
@@ -21,6 +24,12 @@ module.exports = {
   //   connection: 'someMongodbServer'
   // }
 
-  port: 80
+  port: 443,
+
+  ssl: {
+    ca: fs.readFileSync(path.resolve(__dirname,'../ssl/ryans-csr.pem')),
+    key: fs.readFileSync(path.resolve(__dirname,'../ssl/ryans-key.pem')),
+    cert: fs.readFileSync(path.resolve(__dirname,'../ssl/ryans-cert.pem'))
+  }
 
 };
