@@ -8,13 +8,20 @@
 module.exports = {
 
   addOrder: (req, res)=>{
-    sails.models.order.create({
-      tableId: 1,
-      owner: 1,
-      dishes: [4,5,6],
-      sum: 100
-    }).then((result)=>{
-      res.send(result);
+    sails.models.dish.find({}).then(dishes=>{
+      let dishedIds = [];
+      let userId = req.session.user.id;
+      dishes.forEach(dish=>{
+        dishedIds.push(dish.id);
+      });
+      sails.models.order.create({
+        tableId: 1,
+        owner: userId,
+        dishes: dishedIds,
+        sum: 100
+      }).then((result)=>{
+        res.send(result);
+      });
     });
   },
 

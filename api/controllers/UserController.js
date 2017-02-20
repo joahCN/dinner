@@ -15,11 +15,11 @@ module.exports = {
   login: (req, res) => {
 	  let name = req.query.name;
 	  let password = req.query.pas;
-    sails.models.user.find({name: name, password: password}).then((result)=>{
+    sails.models.user.find({where: {name: name, password: password}, limit: 1}).then((result)=>{
       if(!result || sails.util._.isEmpty(result)) {
         res.ok("username or password not exist");
       } else {
-        req.session.user = result;
+        req.session.user = result[0];
         res.ok("login success");
       }
     }).catch((error)=> {
