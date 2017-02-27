@@ -5,6 +5,8 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+// let respondWrap = require('../services/respondWrap');
+
 module.exports = {
 	getUserInfo: (req, res)=>{
 	  sails.models.user.find({name: req.query.name}).then((result)=>{
@@ -17,10 +19,10 @@ module.exports = {
 	  let password = req.query.pas;
     sails.models.user.find({where: {name: name, password: password}, limit: 1}).then((result)=>{
       if(!result || sails.util._.isEmpty(result)) {
-        res.ok("username or password not exist");
+        res.ok(RespondService.fail(1000));
       } else {
         req.session.user = result[0];
-        res.ok("login success");
+        res.ok(RespondService.success({user: result[0]}));
       }
     }).catch((error)=> {
       res.serverError(error);
