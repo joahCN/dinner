@@ -24,12 +24,14 @@ module.exports = {
   //   connection: 'someMongodbServer'
   // }
 
-  port: 443,
+  port: 8081
 
-  ssl: {
-    ca: fs.readFileSync(path.resolve(__dirname,'../ssl/ryans-csr.pem')),
-    key: fs.readFileSync(path.resolve(__dirname,'../ssl/ryans-key.pem')),
-    cert: fs.readFileSync(path.resolve(__dirname,'../ssl/ryans-cert.pem'))
-  }
+  // port: 443,
+
+  // ssl: {
+  //   ca: fs.readFileSync(path.resolve(__dirname,'../ssl/ryans-csr.pem')),
+  //   key: fs.readFileSync(path.resolve(__dirname,'../ssl/ryans-key.pem')),
+  //   cert: fs.readFileSync(path.resolve(__dirname,'../ssl/ryans-cert.pem'))
+  // }
 
 };

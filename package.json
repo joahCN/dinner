@@ -35,5 +35,8 @@
     "url": "git://github.com/anonymous node/sails user/dinner.git"
   },
   "author": "anonymous node/sails user",
-  "license": ""
+  "license": "",
+  "devDependencies": {
+    "crawler": "^1.0.3"
+  }
 }
