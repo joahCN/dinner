@@ -15,6 +15,7 @@ module.exports = {
         res.send(echostr);
     },
     xml: (req, res)=>{
+        console.log("content-type: "+req.get('Content-Type'));
         let {xml: {ToUserName, FromUserName, MsgType, Content}} = req.body;
         console.log(req.body);
         var root = builder.create('xml', {headless: true});
