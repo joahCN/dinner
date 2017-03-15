@@ -9,6 +9,7 @@
  * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.http.html
  */
 
+
 module.exports.http = {
 
   /****************************************************************************
@@ -76,6 +77,22 @@ module.exports.http = {
   ***************************************************************************/
 
     // bodyParser: require('skipper')({strict: true})
+
+  bodyParser: (function() {
+      // Initialize a skipper instance with the default options
+      var skipper = require('skipper')();
+      // Initialize an express-xml-bodyparser instance with the default options
+      var xmlparser = require('express-xml-bodyparser')({trim: true, explicitArray: false, normalizeTags: false});
+      // Create and return the middleware function
+      return function(req, res, next) {
+          // If we see an application/xml header, parse the body as XML
+          if (req.headers['content-type'] == 'application/xml') {
+              return xmlparser(req, res, next);
+          }
+          // Otherwise use Skipper to parse the body
+          return skipper(req, res, next);
+      };
+  })()
 
   },
 
