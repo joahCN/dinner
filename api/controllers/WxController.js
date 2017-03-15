@@ -26,7 +26,8 @@ module.exports = {
         root.ele('Content').dat("Hello, " + ToUserName);
 
         var xml = root.end({ pretty: true});
-        res.set('Content-Type', 'application/xml');
+        console.log("response: " + xml);
+        res.set('Content-Type', 'text/xml');
         res.send(xml);
     }
 };
