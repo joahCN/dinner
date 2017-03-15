@@ -92,7 +92,8 @@ module.exports.http = {
           // Otherwise use Skipper to parse the body
           return skipper(req, res, next);
       };
-  })()
+  })(),
+  poweredBy: false
 
   },
 
